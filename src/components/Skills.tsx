@@ -4,7 +4,7 @@ import FadeIn from "./FadeIn";
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-24 px-6 bg-gray-50 dark:bg-gray-900/50">
+    <section id="skills" className="py-24 px-6">
       <div className="max-w-6xl mx-auto">
         <FadeIn>
           <SectionHeading>Skills & Technologies</SectionHeading>
@@ -12,7 +12,7 @@ export default function Skills() {
         <FadeIn delay={100}>
           <div className="grid md:grid-cols-2 gap-8">
             {skills.map((category) => (
-              <div key={category.category}>
+              <div key={category.category} className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-lg p-6 border border-gray-200 dark:border-gray-700">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
                   {category.category}
                 </h3>
@@ -20,7 +20,7 @@ export default function Skills() {
                   {category.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="px-3 py-1.5 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm rounded-md border border-gray-200 dark:border-gray-700"
+                      className="px-3 py-1.5 bg-white/60 dark:bg-gray-800/60 text-gray-700 dark:text-gray-300 text-sm rounded-md border border-gray-200 dark:border-gray-700"
                     >
                       {skill}
                     </span>

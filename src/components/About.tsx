@@ -26,7 +26,7 @@ export default function About() {
                 problems and makes a meaningful impact.
               </p>
             </div>
-            <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-8 border border-gray-200 dark:border-gray-700">
+            <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-lg p-8 border border-gray-200 dark:border-gray-700">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">Information</h3>
               <div className="space-y-4">
                 <div>

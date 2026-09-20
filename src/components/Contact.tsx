@@ -14,7 +14,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 px-6 bg-gray-50 dark:bg-gray-900/50">
+    <section id="contact" className="py-24 px-6">
       <div className="max-w-4xl mx-auto text-center">
         <FadeIn>
           <SectionHeading>Let's Connect</SectionHeading>
@@ -32,7 +32,7 @@ export default function Contact() {
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-6 py-3 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 hover:shadow-sm transition-all"
+                className="flex items-center gap-2 px-6 py-3 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm text-gray-700 dark:text-gray-300 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 hover:shadow-sm transition-all"
               >
                 {social.icon === "Mail" && <Mail size={20} />}
                 {social.icon === "Github" && (

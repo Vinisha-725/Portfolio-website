@@ -27,7 +27,7 @@ export default function Experience() {
   ];
 
   return (
-    <section id="experience" className="py-24 px-6 bg-gray-50 dark:bg-gray-900/50">
+    <section id="experience" className="py-24 px-6">
       <div className="max-w-6xl mx-auto">
         <FadeIn>
           <SectionHeading>Experience & Activities</SectionHeading>
@@ -35,7 +35,7 @@ export default function Experience() {
         <div className="space-y-8">
           {experiences.map((exp, index) => (
             <FadeIn key={index} delay={100 + index * 50}>
-              <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+              <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-lg p-6 border border-gray-200 dark:border-gray-700">
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
                   {exp.title}
                 </h3>

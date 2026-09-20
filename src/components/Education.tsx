@@ -9,7 +9,7 @@ export default function Education() {
           <SectionHeading>Education</SectionHeading>
         </FadeIn>
         <FadeIn delay={100}>
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-8 border border-gray-200 dark:border-gray-700">
+          <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-lg p-8 border border-gray-200 dark:border-gray-700">
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
               SRM Institute of Science and Technology
             </h3>

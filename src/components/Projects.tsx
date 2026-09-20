@@ -15,7 +15,7 @@ export default function Projects() {
             {projects.map((project, index) => (
               <div
                 key={project.id}
-                className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700 hover:shadow-md hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-200"
+                className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-lg p-6 border border-gray-200 dark:border-gray-700 hover:shadow-md hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-200"
                 style={{ transitionDelay: `${index * 50}ms` }}
               >
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
@@ -28,7 +28,7 @@ export default function Projects() {
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded-md"
+                      className="px-2 py-1 bg-white/60 dark:bg-gray-800/60 text-gray-700 dark:text-gray-300 text-xs rounded-md border border-gray-200 dark:border-gray-700"
                     >
                       {tech}
                     </span>
