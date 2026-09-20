@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { ChevronRight, ExternalLink } from "lucide-react";
 
 interface Command {
   command: string;
@@ -15,6 +14,8 @@ export default function Terminal() {
   const [showCursor, setShowCursor] = useState(true);
   const [history, setHistory] = useState<Command[]>([]);
   const [inputValue, setInputValue] = useState("");
+  const [easterEggTriggered, setEasterEggTriggered] = useState(false);
+  const [matrixMode, setMatrixMode] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const commands: Command[] = [
@@ -24,6 +25,9 @@ export default function Terminal() {
     { command: "contact", output: "GitHub: github.com/yourusername | LinkedIn: linkedin.com/in/yourusername" },
   ];
 
+  const SECRET_WORDS = ["vinisha", "secret", "matrix", "magic", "wonder"];
+  const SECRET_MESSAGE = "🎉 You found the secret! You're a true explorer! 🚀";
+
   const scrollTo = (sectionId: string) => {
     const element = document.querySelector(sectionId);
     if (element) {
@@ -31,13 +35,30 @@ export default function Terminal() {
     }
   };
 
+  const toggleDarkMode = (isDark: boolean) => {
+    if (isDark) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  };
+
   const handleCommand = (cmd: string) => {
     const command = cmd.toLowerCase().trim();
     let output = "";
 
+    // Check for secret words
+    if (SECRET_WORDS.includes(command)) {
+      setEasterEggTriggered(true);
+      setHistory([...history, { command: cmd, output: SECRET_MESSAGE }]);
+      setInputValue("");
+      setTimeout(() => setEasterEggTriggered(false), 5000);
+      return;
+    }
+
     switch (command) {
       case "help":
-        output = "Available commands: whoami, skills, education, contact, projects, experience";
+        output = "Available commands: whoami, skills, education, contact, projects, experience, dark, light, clear";
         break;
       case "whoami":
         output = "Vinisha Sahoo - AI/ML Student & Developer";
@@ -59,10 +80,23 @@ export default function Terminal() {
         output = "Scrolling to experience section...";
         setTimeout(() => scrollTo("#experience"), 500);
         break;
+      case "dark":
+        output = "🌙 Switching to dark mode...";
+        toggleDarkMode(true);
+        break;
+      case "light":
+        output = "☀️ Switching to light mode...";
+        toggleDarkMode(false);
+        break;
       case "clear":
         setHistory([]);
         setInputValue("");
         return;
+      case "matrix":
+        setMatrixMode(true);
+        output = "Entering the Matrix... 🕶️";
+        setTimeout(() => setMatrixMode(false), 3000);
+        break;
       default:
         output = `Command not found: ${command}. Type 'help' for available commands.`;
     }
@@ -108,7 +142,7 @@ export default function Terminal() {
   };
 
   return (
-    <div className="bg-gray-900 rounded-lg overflow-hidden border border-gray-700 shadow-xl">
+    <div className={`bg-gray-900 rounded-lg overflow-hidden border border-gray-700 shadow-xl transition-all duration-500 ${easterEggTriggered ? "border-yellow-400 shadow-yellow-400/50" : ""} ${matrixMode ? "border-green-500 shadow-green-500/50" : ""}`}>
       {/* Terminal Header */}
       <div className="bg-gray-800 px-4 py-2 flex items-center gap-2 border-b border-gray-700">
         <div className="flex gap-2">
@@ -127,6 +161,8 @@ export default function Terminal() {
           <span className="text-gray-500"># Welcome to my interactive terminal</span>
           <br />
           <span className="text-gray-500"># Type 'help' for available commands</span>
+          <br />
+          <span className="text-gray-500"># Hint: Try typing secret words... 🤫</span>
         </div>
 
         {history.map((cmd, index) => (
@@ -135,7 +171,9 @@ export default function Terminal() {
               <span className="text-green-400">$</span>
               <span className="text-gray-300">{cmd.command}</span>
             </div>
-            <div className="text-gray-400 ml-4 mt-1">{cmd.output}</div>
+            <div className={`ml-4 mt-1 ${easterEggTriggered && index === history.length - 1 ? "text-yellow-400 font-bold" : "text-gray-400"}`}>
+              {cmd.output}
+            </div>
           </div>
         ))}
 
@@ -167,7 +205,7 @@ export default function Terminal() {
         <div className="mt-4 pt-4 border-t border-gray-700">
           <div className="text-gray-500 text-xs mb-2">Quick commands:</div>
           <div className="flex flex-wrap gap-2">
-            {["whoami", "skills", "projects", "experience"].map((cmd) => (
+            {["whoami", "skills", "projects", "experience", "dark", "light"].map((cmd) => (
               <button
                 key={cmd}
                 onClick={() => handleCommand(cmd)}
