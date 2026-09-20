@@ -25,63 +25,107 @@ export default function Background() {
 
     const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
+    // Animated gradient blobs
+    const blobs = [
+      { x: 0.2, y: 0.3, radius: 0, maxRadius: 600, color: "#6366f1", speed: 0.002, phase: 0 },
+      { x: 0.8, y: 0.2, radius: 0, maxRadius: 500, color: "#8b5cf6", speed: 0.003, phase: 2 },
+      { x: 0.5, y: 0.8, radius: 0, maxRadius: 550, color: "#ec4899", speed: 0.0025, phase: 4 },
+      { x: 0.3, y: 0.6, radius: 0, maxRadius: 450, color: "#06b6d4", speed: 0.0015, phase: 1 },
+      { x: 0.7, y: 0.5, radius: 0, maxRadius: 480, color: "#f59e0b", speed: 0.0022, phase: 3 },
+    ];
+
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      time += 0.005;
+      time += 0.01;
 
-      // Create flowing wave effect
-      const colors = isDarkMode
-        ? [
-            { r: 99, g: 102, b: 241, a: 0.03 }, // Indigo
-            { r: 168, g: 85, b: 247, a: 0.025 }, // Purple
-            { r: 236, g: 72, b: 153, a: 0.02 }, // Pink
-          ]
-        : [
-            { r: 224, g: 231, b: 255, a: 0.6 }, // Soft blue
-            { r: 250, g: 232, b: 255, a: 0.5 }, // Soft purple
-            { r: 254, g: 243, b: 199, a: 0.4 }, // Soft yellow
-          ];
+      // Base gradient background
+      const bgGradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      if (isDarkMode) {
+        bgGradient.addColorStop(0, "#0f172a");
+        bgGradient.addColorStop(0.5, "#1e1b4b");
+        bgGradient.addColorStop(1, "#0f172a");
+      } else {
+        bgGradient.addColorStop(0, "#f8fafc");
+        bgGradient.addColorStop(0.5, "#e0e7ff");
+        bgGradient.addColorStop(1, "#f8fafc");
+      }
+      ctx.fillStyle = bgGradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      for (let i = 0; i < colors.length; i++) {
-        const color = colors[i];
-        const yOffset = i * 200;
+      // Animate and draw blobs
+      blobs.forEach((blob, index) => {
+        // Update position with smooth movement
+        blob.x = 0.5 + Math.sin(time * blob.speed + blob.phase) * 0.3;
+        blob.y = 0.5 + Math.cos(time * blob.speed * 0.8 + blob.phase) * 0.3;
         
-        ctx.beginPath();
-        ctx.moveTo(0, canvas.height);
+        // Pulsing radius
+        blob.radius = blob.maxRadius * (0.8 + Math.sin(time * 0.5 + blob.phase) * 0.2);
 
-        for (let x = 0; x <= canvas.width; x += 10) {
-          const y =
-            canvas.height * 0.7 +
-            yOffset +
-            Math.sin(x * 0.003 + time + i) * 80 +
-            Math.sin(x * 0.005 + time * 0.5 + i * 2) * 40;
-          ctx.lineTo(x, y);
+        const x = blob.x * canvas.width;
+        const y = blob.y * canvas.height;
+
+        // Create radial gradient for blob
+        const gradient = ctx.createRadialGradient(x, y, 0, x, y, blob.radius);
+        
+        if (isDarkMode) {
+          gradient.addColorStop(0, blob.color + "40");
+          gradient.addColorStop(0.5, blob.color + "20");
+          gradient.addColorStop(1, blob.color + "00");
+        } else {
+          gradient.addColorStop(0, blob.color + "60");
+          gradient.addColorStop(0.5, blob.color + "30");
+          gradient.addColorStop(1, blob.color + "00");
         }
 
-        ctx.lineTo(canvas.width, canvas.height);
-        ctx.closePath();
-
-        const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-        gradient.addColorStop(0, `rgba(${color.r}, ${color.g}, ${color.b}, ${color.a})`);
-        gradient.addColorStop(1, `rgba(${color.r}, ${color.g}, ${color.b}, 0)`);
-        
         ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(x, y, blob.radius, 0, Math.PI * 2);
         ctx.fill();
-      }
+      });
 
-      // Add subtle floating particles
-      const particleCount = isDarkMode ? 30 : 50;
-      for (let i = 0; i < particleCount; i++) {
-        const x = (Math.sin(time * 0.5 + i * 0.5) * 0.5 + 0.5) * canvas.width;
-        const y = (Math.cos(time * 0.3 + i * 0.7) * 0.5 + 0.5) * canvas.height;
-        const size = isDarkMode ? 1 + Math.sin(time + i) * 0.5 : 2 + Math.sin(time + i) * 1;
+      // Add floating geometric shapes
+      const shapeCount = 15;
+      for (let i = 0; i < shapeCount; i++) {
+        const angle = (i / shapeCount) * Math.PI * 2 + time * 0.2;
+        const radiusX = canvas.width * 0.35 + Math.sin(time * 0.3 + i) * 50;
+        const radiusY = canvas.height * 0.35 + Math.cos(time * 0.3 + i) * 50;
         
+        const x = canvas.width / 2 + Math.cos(angle) * radiusX;
+        const y = canvas.height / 2 + Math.sin(angle) * radiusY;
+        const size = 3 + Math.sin(time + i * 0.5) * 2;
+
         ctx.beginPath();
         ctx.arc(x, y, size, 0, Math.PI * 2);
         ctx.fillStyle = isDarkMode
-          ? `rgba(255, 255, 255, ${0.1 + Math.sin(time + i) * 0.05})`
-          : `rgba(100, 100, 100, ${0.1 + Math.sin(time + i) * 0.05})`;
+          ? `rgba(255, 255, 255, ${0.15 + Math.sin(time + i) * 0.08})`
+          : `rgba(99, 102, 241, ${0.2 + Math.sin(time + i) * 0.1})`;
         ctx.fill();
+      }
+
+      // Add connecting lines between nearby particles
+      ctx.strokeStyle = isDarkMode
+        ? "rgba(255, 255, 255, 0.03)"
+        : "rgba(99, 102, 241, 0.05)";
+      ctx.lineWidth = 1;
+
+      for (let i = 0; i < shapeCount; i++) {
+        const angle1 = (i / shapeCount) * Math.PI * 2 + time * 0.2;
+        const x1 = canvas.width / 2 + Math.cos(angle1) * (canvas.width * 0.35 + Math.sin(time * 0.3 + i) * 50);
+        const y1 = canvas.height / 2 + Math.sin(angle1) * (canvas.height * 0.35 + Math.cos(time * 0.3 + i) * 50);
+
+        for (let j = i + 1; j < shapeCount; j++) {
+          const angle2 = (j / shapeCount) * Math.PI * 2 + time * 0.2;
+          const x2 = canvas.width / 2 + Math.cos(angle2) * (canvas.width * 0.35 + Math.sin(time * 0.3 + j) * 50);
+          const y2 = canvas.height / 2 + Math.sin(angle2) * (canvas.height * 0.35 + Math.cos(time * 0.3 + j) * 50);
+
+          const distance = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
+          if (distance < 200) {
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.stroke();
+          }
+        }
       }
 
       animationFrameId = requestAnimationFrame(animate);
