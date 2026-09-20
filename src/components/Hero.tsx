@@ -17,10 +17,10 @@ export default function Hero() {
         <h1 className="text-5xl md:text-6xl font-semibold text-gray-900 dark:text-white mb-6">
           Hi, I'm Vinisha Sahoo.
         </h1>
-        <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-6">
+        <p className="text-xl md:text-2xl text-gray-800 dark:text-gray-300 mb-6">
           Computer Science & AI/ML Student building practical software and intelligent systems.
         </p>
-        <p className="text-base text-gray-600 dark:text-gray-400 mb-10 max-w-2xl mx-auto">
+        <p className="text-base text-gray-700 dark:text-gray-400 mb-10 max-w-2xl mx-auto">
           Computer Science & Engineering (AI/ML) student passionate about artificial intelligence,
           software development, and building useful technology.
         </p>

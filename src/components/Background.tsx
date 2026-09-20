@@ -37,13 +37,21 @@ export default function Background() {
     window.addEventListener("resize", resizeCanvas);
 
     // Animated gradient blobs
-    const blobs = [
-      { x: 0.2, y: 0.3, radius: 0, maxRadius: 600, color: "#6366f1", speed: 0.002, phase: 0 },
-      { x: 0.8, y: 0.2, radius: 0, maxRadius: 500, color: "#8b5cf6", speed: 0.003, phase: 2 },
-      { x: 0.5, y: 0.8, radius: 0, maxRadius: 550, color: "#ec4899", speed: 0.0025, phase: 4 },
-      { x: 0.3, y: 0.6, radius: 0, maxRadius: 450, color: "#06b6d4", speed: 0.0015, phase: 1 },
-      { x: 0.7, y: 0.5, radius: 0, maxRadius: 480, color: "#f59e0b", speed: 0.0022, phase: 3 },
-    ];
+    const blobs = isDarkMode
+      ? [
+          { x: 0.2, y: 0.3, radius: 0, maxRadius: 600, color: "#6366f1", speed: 0.002, phase: 0 },
+          { x: 0.8, y: 0.2, radius: 0, maxRadius: 500, color: "#8b5cf6", speed: 0.003, phase: 2 },
+          { x: 0.5, y: 0.8, radius: 0, maxRadius: 550, color: "#ec4899", speed: 0.0025, phase: 4 },
+          { x: 0.3, y: 0.6, radius: 0, maxRadius: 450, color: "#06b6d4", speed: 0.0015, phase: 1 },
+          { x: 0.7, y: 0.5, radius: 0, maxRadius: 480, color: "#f59e0b", speed: 0.0022, phase: 3 },
+        ]
+      : [
+          { x: 0.2, y: 0.3, radius: 0, maxRadius: 600, color: "#fbbf24", speed: 0.002, phase: 0 },
+          { x: 0.8, y: 0.2, radius: 0, maxRadius: 500, color: "#f472b6", speed: 0.003, phase: 2 },
+          { x: 0.5, y: 0.8, radius: 0, maxRadius: 550, color: "#a78bfa", speed: 0.0025, phase: 4 },
+          { x: 0.3, y: 0.6, radius: 0, maxRadius: 450, color: "#34d399", speed: 0.0015, phase: 1 },
+          { x: 0.7, y: 0.5, radius: 0, maxRadius: 480, color: "#fb923c", speed: 0.0022, phase: 3 },
+        ];
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -56,9 +64,9 @@ export default function Background() {
         bgGradient.addColorStop(0.5, "#1e1b4b");
         bgGradient.addColorStop(1, "#0f172a");
       } else {
-        bgGradient.addColorStop(0, "#d4d7e0");
-        bgGradient.addColorStop(0.5, "#c8ccd8");
-        bgGradient.addColorStop(1, "#d4d7e0");
+        bgGradient.addColorStop(0, "#faf7f5");
+        bgGradient.addColorStop(0.5, "#f5f0eb");
+        bgGradient.addColorStop(1, "#faf7f5");
       }
       ctx.fillStyle = bgGradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -109,14 +117,14 @@ export default function Background() {
         ctx.arc(x, y, size, 0, Math.PI * 2);
         ctx.fillStyle = isDarkMode
           ? `rgba(255, 255, 255, ${0.15 + Math.sin(time + i) * 0.08})`
-          : `rgba(60, 60, 80, ${0.25 + Math.sin(time + i) * 0.1})`;
+          : `rgba(180, 140, 100, ${0.2 + Math.sin(time + i) * 0.1})`;
         ctx.fill();
       }
 
       // Add connecting lines between nearby particles
       ctx.strokeStyle = isDarkMode
         ? "rgba(255, 255, 255, 0.03)"
-        : "rgba(60, 60, 80, 0.08)";
+        : "rgba(180, 140, 100, 0.06)";
       ctx.lineWidth = 1;
 
       for (let i = 0; i < shapeCount; i++) {
