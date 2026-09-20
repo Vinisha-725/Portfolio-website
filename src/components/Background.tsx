@@ -1,9 +1,22 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Background() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    const checkDarkMode = () => {
+      setIsDarkMode(document.documentElement.classList.contains("dark"));
+    };
+    
+    checkDarkMode();
+    const observer = new MutationObserver(checkDarkMode);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -22,8 +35,6 @@ export default function Background() {
 
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
-
-    const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
     // Animated gradient blobs
     const blobs = [
@@ -137,7 +148,7 @@ export default function Background() {
       window.removeEventListener("resize", resizeCanvas);
       cancelAnimationFrame(animationFrameId);
     };
-  }, []);
+  }, [isDarkMode]);
 
   return (
     <canvas
