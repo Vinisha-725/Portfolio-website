@@ -56,9 +56,9 @@ export default function Background() {
         bgGradient.addColorStop(0.5, "#1e1b4b");
         bgGradient.addColorStop(1, "#0f172a");
       } else {
-        bgGradient.addColorStop(0, "#f8fafc");
-        bgGradient.addColorStop(0.5, "#e0e7ff");
-        bgGradient.addColorStop(1, "#f8fafc");
+        bgGradient.addColorStop(0, "#d4d7e0");
+        bgGradient.addColorStop(0.5, "#c8ccd8");
+        bgGradient.addColorStop(1, "#d4d7e0");
       }
       ctx.fillStyle = bgGradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -83,8 +83,8 @@ export default function Background() {
           gradient.addColorStop(0.5, blob.color + "20");
           gradient.addColorStop(1, blob.color + "00");
         } else {
-          gradient.addColorStop(0, blob.color + "60");
-          gradient.addColorStop(0.5, blob.color + "30");
+          gradient.addColorStop(0, blob.color + "50");
+          gradient.addColorStop(0.5, blob.color + "25");
           gradient.addColorStop(1, blob.color + "00");
         }
 
@@ -109,14 +109,14 @@ export default function Background() {
         ctx.arc(x, y, size, 0, Math.PI * 2);
         ctx.fillStyle = isDarkMode
           ? `rgba(255, 255, 255, ${0.15 + Math.sin(time + i) * 0.08})`
-          : `rgba(99, 102, 241, ${0.2 + Math.sin(time + i) * 0.1})`;
+          : `rgba(60, 60, 80, ${0.25 + Math.sin(time + i) * 0.1})`;
         ctx.fill();
       }
 
       // Add connecting lines between nearby particles
       ctx.strokeStyle = isDarkMode
         ? "rgba(255, 255, 255, 0.03)"
-        : "rgba(99, 102, 241, 0.05)";
+        : "rgba(60, 60, 80, 0.08)";
       ctx.lineWidth = 1;
 
       for (let i = 0; i < shapeCount; i++) {

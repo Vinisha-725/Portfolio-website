@@ -17,10 +17,10 @@ export default function Hero() {
         <h1 className="text-5xl md:text-6xl font-semibold text-gray-900 dark:text-white mb-6">
           Hi, I'm Vinisha Sahoo.
         </h1>
-        <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-6">
+        <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-6">
           Computer Science & AI/ML Student building practical software and intelligent systems.
         </p>
-        <p className="text-base text-gray-500 dark:text-gray-400 mb-10 max-w-2xl mx-auto">
+        <p className="text-base text-gray-600 dark:text-gray-400 mb-10 max-w-2xl mx-auto">
           Computer Science & Engineering (AI/ML) student passionate about artificial intelligence,
           software development, and building useful technology.
         </p>
@@ -34,7 +34,7 @@ export default function Hero() {
           </button>
           <button
             onClick={() => scrollTo("#contact")}
-            className="px-8 py-3 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+            className="px-8 py-3 border border-gray-400 dark:border-gray-600 text-gray-900 dark:text-white rounded-lg font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
           >
             Let's Connect
           </button>
@@ -47,7 +47,7 @@ export default function Hero() {
               href={social.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+              className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
               aria-label={social.name}
             >
               {social.icon === "Mail" && <Mail size={24} />}
