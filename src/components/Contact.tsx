@@ -74,7 +74,7 @@ export default function Contact() {
           </div>
 
           <button
-            onClick={() => (window.location.href = "mailto:your.email@example.com")}
+            onClick={() => (window.location.href = "mailto:vinisha.sahoo@gmail.com")}
             className="px-8 py-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg font-medium hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
           >
             Get In Touch →
