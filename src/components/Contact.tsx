@@ -4,8 +4,12 @@ import SectionHeading from "./SectionHeading";
 import { socials } from "@/data/socials";
 import { Mail } from "lucide-react";
 import FadeIn from "./FadeIn";
+import ContactModal from "./ContactModal";
+import { useState } from "react";
 
 export default function Contact() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const scrollTo = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
@@ -74,13 +78,14 @@ export default function Contact() {
           </div>
 
           <button
-            onClick={() => (window.location.href = "mailto:vinisha.sahoo@gmail.com")}
+            onClick={() => setIsModalOpen(true)}
             className="px-8 py-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg font-medium hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
           >
             Get In Touch →
           </button>
         </FadeIn>
       </div>
+      <ContactModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </section>
   );
 }
