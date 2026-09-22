@@ -35,16 +35,16 @@ export default function Experience() {
         <div className="space-y-8">
           {experiences.map((exp, index) => (
             <FadeIn key={index} delay={100 + index * 50}>
-              <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-lg p-6 border border-gray-200 dark:border-gray-700">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+              <div className="bg-white/10 dark:bg-gray-900/50 backdrop-blur-sm rounded-lg p-6 border border-white/20 dark:border-gray-700">
+                <h3 className="text-xl font-semibold text-white dark:text-gray-100 mb-2">
                   {exp.title}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300 font-medium mb-4">{exp.role}</p>
+                <p className="text-gray-300 dark:text-gray-300 font-medium mb-4">{exp.role}</p>
                 <ul className="space-y-2">
                   {exp.description.map((item, i) => (
                     <li
                       key={i}
-                      className="text-gray-600 dark:text-gray-400 text-sm flex items-start"
+                      className="text-gray-300 dark:text-gray-400 text-sm flex items-start"
                     >
                       <span className="mr-2 text-gray-400 dark:text-gray-500">•</span>
                       {item}

@@ -20,7 +20,7 @@ export default function Contact() {
           <SectionHeading>Let's Connect</SectionHeading>
         </FadeIn>
         <FadeIn delay={100}>
-          <p className="text-lg text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-300 dark:text-gray-300 mb-12 max-w-2xl mx-auto">
             I'm always interested in interesting projects, internships, collaborations, and opportunities
             to build something useful.
           </p>
@@ -32,7 +32,7 @@ export default function Contact() {
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-6 py-3 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm text-gray-700 dark:text-gray-300 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 hover:shadow-sm transition-all"
+                className="flex items-center gap-2 px-6 py-3 bg-white/10 dark:bg-gray-900/50 backdrop-blur-sm text-gray-200 dark:text-gray-300 rounded-lg border border-white/20 dark:border-gray-700 hover:border-white/30 dark:hover:border-gray-600 hover:shadow-sm transition-all"
               >
                 {social.icon === "Mail" && <Mail size={20} />}
                 {social.icon === "Github" && (
@@ -75,7 +75,7 @@ export default function Contact() {
 
           <button
             onClick={() => (window.location.href = "mailto:your.email@example.com")}
-            className="px-8 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
+            className="px-8 py-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg font-medium hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
           >
             Get In Touch →
           </button>

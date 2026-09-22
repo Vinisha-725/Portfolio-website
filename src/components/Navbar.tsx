@@ -36,7 +36,7 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-sm"
+          ? "bg-white/10 dark:bg-gray-900/50 backdrop-blur-md shadow-sm"
           : "bg-transparent"
       }`}
     >
@@ -48,7 +48,7 @@ export default function Navbar() {
               e.preventDefault();
               scrollTo("#home");
             }}
-            className="text-xl font-semibold text-gray-900 dark:text-white"
+            className="text-xl font-semibold text-white dark:text-gray-100"
           >
             Vinisha Sahoo
           </a>
@@ -63,7 +63,7 @@ export default function Navbar() {
                   e.preventDefault();
                   scrollTo(link.href);
                 }}
-                className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+                className="text-sm text-gray-300 dark:text-gray-300 hover:text-white dark:hover:text-white transition-colors"
               >
                 {link.name}
               </a>
@@ -73,7 +73,7 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-gray-600 dark:text-gray-300"
+            className="md:hidden text-gray-300 dark:text-gray-300"
             aria-label="Toggle menu"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -82,7 +82,7 @@ export default function Navbar() {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden mt-4 pb-4 border-t border-gray-200 dark:border-gray-700">
+          <div className="md:hidden mt-4 pb-4 border-t border-white/20 dark:border-gray-700">
             <div className="flex flex-col space-y-4 pt-4">
               {navLinks.map((link) => (
                 <a
@@ -92,7 +92,7 @@ export default function Navbar() {
                     e.preventDefault();
                     scrollTo(link.href);
                   }}
-                  className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+                  className="text-sm text-gray-300 dark:text-gray-300 hover:text-white dark:hover:text-white transition-colors"
                 >
                   {link.name}
                 </a>

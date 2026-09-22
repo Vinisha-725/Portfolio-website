@@ -15,20 +15,20 @@ export default function Projects() {
             {projects.map((project, index) => (
               <div
                 key={project.id}
-                className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-lg p-6 border border-gray-200 dark:border-gray-700 hover:shadow-md hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-200"
+                className="bg-white/10 dark:bg-gray-900/50 backdrop-blur-sm rounded-lg p-6 border border-white/20 dark:border-gray-700 hover:shadow-md hover:border-white/30 dark:hover:border-gray-600 transition-all duration-200"
                 style={{ transitionDelay: `${index * 50}ms` }}
               >
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+                <h3 className="text-xl font-semibold text-white dark:text-gray-100 mb-3">
                   {project.name}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm leading-relaxed">
+                <p className="text-gray-300 dark:text-gray-300 mb-4 text-sm leading-relaxed">
                   {project.description}
                 </p>
                 <div className="flex flex-wrap gap-2 mb-5">
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="px-2 py-1 bg-white/60 dark:bg-gray-800/60 text-gray-700 dark:text-gray-300 text-xs rounded-md border border-gray-200 dark:border-gray-700"
+                      className="px-2 py-1 bg-white/10 dark:bg-gray-800/60 text-gray-200 dark:text-gray-300 text-xs rounded-md border border-white/20 dark:border-gray-700"
                     >
                       {tech}
                     </span>
@@ -40,7 +40,7 @@ export default function Projects() {
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                      className="flex items-center gap-2 text-sm text-gray-300 dark:text-gray-400 hover:text-white dark:hover:text-white transition-colors"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -64,7 +64,7 @@ export default function Projects() {
                       href={project.liveDemo}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                      className="flex items-center gap-2 text-sm text-gray-300 dark:text-gray-400 hover:text-white dark:hover:text-white transition-colors"
                     >
                       <ExternalLink size={16} />
                       <span>Live Demo</span>
