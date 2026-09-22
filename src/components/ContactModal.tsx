@@ -25,7 +25,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
     try {
       // Using Formspree for email delivery
       // Note: You'll need to replace 'YOUR_FORMSPREE_FORM_ID' with your actual Formspree form ID
-      const response = await fetch("https://formspree.io/f/YOUR_FORMSPREE_FORM_ID", {
+      const response = await fetch("https://formspree.io/f/xoevdpvd", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
