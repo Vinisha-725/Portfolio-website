@@ -21,12 +21,11 @@ export default function Terminal() {
   const commands: Command[] = [
     { command: "whoami", output: "Vinisha Sahoo - AI/ML Student & Developer" },
     { command: "skills", output: "Python, React, Next.js, TensorFlow, PyTorch, Node.js" },
-    { command: "education", output: "B.Tech CSE (AI/ML) @ SRM Institute of Science and Technology" },
-    { command: "contact", output: "GitHub: github.com/yourusername | LinkedIn: linkedin.com/in/yourusername" },
+    { command: "contact", output: "GitHub: https://github.com/Vinisha-725 | LinkedIn: https://www.linkedin.com/in/vinisha-sahoo/" },
   ];
 
   const SECRET_WORDS = ["vinisha", "secret", "matrix", "magic", "wonder"];
-  const SECRET_MESSAGE = "🎉 You found the secret! You're a true explorer! 🚀";
+  const SECRET_MESSAGE = "Helloo welcome!";
 
   const scrollTo = (sectionId: string) => {
     const element = document.querySelector(sectionId);
